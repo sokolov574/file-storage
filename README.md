@@ -33,5 +33,5 @@ Whether you're on Windows, macOS, or Linux, file-storage seamlessly integrates i
 
 ## 🚀 Built for Performance
 
-Leveraging cutting-edge technologies and optimized algorithms, file-storage delivers lightning-fast file operations, ensuring a smooth and efficient experience, even with large datasets.
+Leveraging cutting-edge technologies and optimized algorithms, file-storage delivers lightning-fast file operations, ensuring a smooth and efficient experience, even with large datasets
 ```
