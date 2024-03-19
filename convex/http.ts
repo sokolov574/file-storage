@@ -25,9 +25,11 @@ http.route({
       switch (result.type) {
         case "user.created":
           await ctx.runMutation(internal.users.createUser, {
-            tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.id}`
+            tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.id}`,
+            clerkId: result.data.id, //????????????????????
           });
           break;
+
       }
 
       return new Response(null, {
