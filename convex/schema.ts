@@ -13,5 +13,5 @@ export default defineSchema({
     clerkId: v.string(),
     orgIds: v.array(v.string()),
 
-  })
+  }).index("by_tokenIdentifier", ["tokenIdentifier"])
 });
