@@ -7,6 +7,7 @@ export const createUser = internalMutation({
         await ctx.db.insert("users", {
             tokenIdentifier: args.tokenIdentifier,
             clerkId: args.clerkId,
+            orgIds: [],
         });
     }
 });
