@@ -9,16 +9,19 @@ export function Header() {
             <OrganizationSwitcher />
             <UserButton />
            
-                <SignedOut>
+                <SignedOut> 
                     <SignInButton>
                         <Button>Sign In</Button>
                     </SignInButton>
                 </SignedOut>
-           
+        
             
         </div>
     </div>
 }
+
+// This is the Header component. It includes the OrganizationSwitcher and UserButton components.
+// When the user is signed out, the SignInButton is displayed.
 
 
 
