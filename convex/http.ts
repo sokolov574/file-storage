@@ -29,7 +29,13 @@ http.route({
             clerkId: result.data.id, //????????????????????
           });
           break;
-
+        case 'organizationMembership.created'
+        await ctx.runMutation(internal.users.addOrgIdToUser, {
+          tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
+          clerkId: result.data.id,
+          orgId: result.data.organizationId.id
+        });
+        break
       }
 
       return new Response(null, {
