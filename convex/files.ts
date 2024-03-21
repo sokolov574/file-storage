@@ -1,5 +1,6 @@
 import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { getUser } from "./users";
 
 export const createFile = mutation({
     args: {
@@ -13,7 +14,11 @@ export const createFile = mutation({
         throw new ConvexError("You must be signed in to create a file")
       }
 
-      const user = await ctx.db.db.query("users").withIndex()
+      const user = await getUser(ctx, identity.tokenIdentifier)
+
+      if(!user) {
+        throw new ConvexError("user should have been defined")
+      }
 
 
         await ctx.db.insert("files", { 
