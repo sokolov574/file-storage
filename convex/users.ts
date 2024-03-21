@@ -6,7 +6,7 @@ export const createUser = internalMutation({
     async handler(ctx, args) {
         await ctx.db.insert("users", {
             tokenIdentifier: args.tokenIdentifier,
-            clerkId: args.clerkId,
+
             orgIds: [],
         });
     }
@@ -28,7 +28,7 @@ export const addOrgIdToUser = internalMutation({
 
         await ctx.db.insert("users", {
             tokenIdentifier: args.tokenIdentifier,
-            clerkId: args.clerkId,
+
             orgIds: [...user.orgIds, args.orgId],
         })
     }
