@@ -1,5 +1,16 @@
 import { ConvexError, v } from "convex/values";
-import { internalMutation } from "./_generated/server";
+import { QueryCtx, internalMutation, MutationCtx } from "./_generated/server";
+
+export async function getUser(ctx: QueryCtx | MutationCtx, tokenIdentifier: string) 
+
+{
+    return await ctx.db
+            .query("users")
+            .withIndex('by_tokenIdentifier', q => 
+                q.eq('tokenIdentifier', tokenIdentifier)
+            )
+            .first();
+}
 
 export const createUser = internalMutation({
     args: { tokenIdentifier: v.string(), clerkId: v.string() },
@@ -15,12 +26,7 @@ export const createUser = internalMutation({
 export const addOrgIdToUser = internalMutation({
     args: { tokenIdentifier: v.string(), clerkId: v.string(), orgId: v.string() },
     async handler(ctx, args) {
-        const user = await ctx.db
-            .query("users")
-            .withIndex('by_tokenIdentifier', q => 
-                q.eq('tokenIdentifier', args.tokenIdentifier)
-            )
-            .first();
+        const user = await getUser(ctx, args.tokenIdentifier)
 
         if(!user) {
             throw new ConvexError('User not found');
