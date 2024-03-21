@@ -30,7 +30,7 @@ export const addOrgIdToUser = internalMutation({
             tokenIdentifier: args.tokenIdentifier,
             clerkId: args.clerkId,
             orgIds: [...user.orgIds, args.orgId],
-        });
+        })
     }
 });
 
