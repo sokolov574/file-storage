@@ -16,7 +16,19 @@ export const createFile = mutation({
 
       const user = await getUser(ctx, identity.tokenIdentifier)
 
-    if (!user.orgIds.includes(args.orgId) && user.tokenIdentifier !== identity.tokenIdentifier) {
+      console.log(identity.tokenIdentifier)
+      console.log(user.tokenIdentifier)
+      console.log(user.orgIds)
+
+
+
+      const hasAccess = user.orgIds.includes(args.orgId) ||
+       user.tokenIdentifier === args.orgId;
+
+       console.log(hasAccess)
+
+    if (!hasAccess) 
+       {
       throw new ConvexError("You do not have access to this organization")
     }
 
