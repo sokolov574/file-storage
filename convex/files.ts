@@ -53,6 +53,16 @@ export const getFiles = query({
             return [];
         }
 
+        const hasAccess = await hasAccessToOrg(
+          ctx, 
+          identity.tokenIdentifier, 
+          args.orgId);
+
+
+          if (!hasAccess) {
+            return [];
+        }
+
         return ctx.db
         .query("files")
         .withIndex("by_orgId", q => q.eq("orgId", args.orgId))
