@@ -35,10 +35,6 @@ export const addOrgIdToUser = internalMutation({
     async handler(ctx, args) {
         const user = await getUser(ctx, args.tokenIdentifier)
 
-        await ctx.db.patch(user._id, {
-            orgIds: [...user.orgIds, args.orgId],
-        });
-
         await ctx.db.insert("users", {
             tokenIdentifier: args.tokenIdentifier,
 

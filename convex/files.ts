@@ -16,10 +16,9 @@ export const createFile = mutation({
 
       const user = await getUser(ctx, identity.tokenIdentifier)
 
-      if(!user) {
-        throw new ConvexError("user should have been defined")
-      }
-
+    if (!user.orgIds.includes(args.orgId) && user.tokenIdentifier !== identity.tokenIdentifier) {
+      throw new ConvexError("You do not have access to this organization")
+    }
 
         await ctx.db.insert("files", { 
           name: args.name,
