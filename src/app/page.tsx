@@ -26,7 +26,9 @@ import { useForm } from "react-hook-form"
  
 const formSchema = z.object({
   title: z.string().min(1).max(200),
-  file: z.custom <File | null>((val) => val instanceof File, "Required"),
+  file: z
+        .custom<FileList>((val) => val instanceof FileList, "Required")
+        .refine((files) => files.length > 0, "Required"), 
 })
 
 
@@ -40,6 +42,8 @@ export default function Home() {
       title: "",
     },
   })
+
+  const fileRef = form.register("file");
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
@@ -76,6 +80,7 @@ export default function Home() {
           <DialogDescription>
           <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+
         <FormField
           control={form.control}
           name="title"
@@ -93,17 +98,13 @@ export default function Home() {
         <FormField
           control={form.control}
           name="file"
-          render={({ field: { onChange }, ...filed }) => (
+          render={() => (
             <FormItem>
               <FormLabel>File</FormLabel>
                 <FormControl>
                   <Input
                     type="file"
-                    {...filed}
-                    onChange={(event) => {
-                      if (!event.target.files) return;
-                      onChange(event.target.files?.[0]);
-                    }}
+                    {...fileRef}
                   />
                 </FormControl>
                 <FormMessage />
