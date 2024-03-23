@@ -24,6 +24,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
  
 const formSchema = z.object({
   title: z.string().min(1).max(200),
@@ -34,6 +35,7 @@ const formSchema = z.object({
 
 
 export default function Home() {
+  const { toast } = useToast()
   const  organization = useOrganization();
   const user = useUser();
   const generateUploadUrl = useMutation(api.files.generateUploadUrl)
@@ -70,6 +72,12 @@ export default function Home() {
 
     form.reset();
     setIsFileDialogOpen(false);
+
+    toast({
+      variant: "default",
+      title: "File Uploaded",
+          description: "Now everyone can view your file",
+    })
   }
 
   let orgId: string | undefined = undefined;
