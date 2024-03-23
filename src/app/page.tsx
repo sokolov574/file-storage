@@ -23,6 +23,7 @@ import { z } from "zod"
  
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useState } from "react";
  
 const formSchema = z.object({
   title: z.string().min(1).max(200),
@@ -61,17 +62,22 @@ export default function Home() {
 
     if (!orgId) return
 
-    createFile({
+    await createFile({
       name: values.title,
       fileId: storageId,
       orgId
     })
+
+    form.reset();
+    setIsFileDialogOpen(false);
   }
 
   let orgId: string | undefined = undefined;
   if(organization?.isLoaded && user?.isLoaded) {
   orgId = organization?.organization?.id ?? user?.user?.id;
 }
+
+const [isFileDialogOpen, setIsFileDialogOpen] = useState(false);
 
 const files = useQuery(api.files.getFiles, orgId ? { orgId } : "skip");
 const createFile = useMutation(api.files.createFile);
@@ -81,7 +87,7 @@ return (
     <div className="flex justify-between items-center">
       <h1 className="text-4xl font-bold">Your Files</h1>
 
-      <Dialog>
+      <Dialog open={isFileDialogOpen} onOpenChange={setIsFileDialogOpen}>
         <DialogTrigger asChild>
           <Button onClick={() => {}}>Upload File</Button>
         </DialogTrigger>
