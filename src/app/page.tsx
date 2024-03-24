@@ -64,21 +64,32 @@ export default function Home() {
 
     if (!orgId) return
 
-    await createFile({
-      name: values.title,
-      fileId: storageId,
-      orgId
-    })
+    try {
 
-    form.reset();
-    setIsFileDialogOpen(false);
+      await createFile({
+        name: values.title,
+        fileId: storageId,
+        orgId
+      })
 
+      form.reset();
+      setIsFileDialogOpen(false);
+      
+      toast({
+        variant: "success",
+        title: "File Uploaded",
+        description: "Now everyone can view your file",
+      })
+    }
+   catch (err) {
     toast({
-      variant: "success",
-      title: "File Uploaded",
-          description: "Now everyone can view your file",
+      variant: "destructive",
+      title: "Something went wrong",
+      description: "Your file could not be uploaded. Please try again.",
     })
   }
+  }
+
 
   let orgId: string | undefined = undefined;
   if(organization?.isLoaded && user?.isLoaded) {
