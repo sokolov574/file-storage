@@ -29,28 +29,27 @@ export const createFile = mutation({
       orgId: v.string(),
     },
     async handler (ctx, args) {
-      throw new Error("You have no access")
       const identity = await ctx.auth.getUserIdentity();
       
-    //   if (!identity) {
-    //     throw new ConvexError("You must be signed in to create a file")
-    //   }
+      if (!identity) {
+        throw new ConvexError("You must be signed in to create a file")
+      }
 
-    //   const hasAccess = await hasAccessToOrg(
-    //     ctx, 
-    //     identity.tokenIdentifier, 
-    //     args.orgId);
+      const hasAccess = await hasAccessToOrg(
+        ctx, 
+        identity.tokenIdentifier, 
+        args.orgId);
 
-    // if (!hasAccess) 
-    //    {
-    //   throw new ConvexError("You do not have access to this organization")
-    // }
+    if (!hasAccess) 
+       {
+      throw new ConvexError("You do not have access to this organization")
+    }
 
-    //     await ctx.db.insert("files", { 
-    //       name: args.name,
-    //       fileId: args.fileId,
-    //       orgId: args.orgId,
-    //      })
+        await ctx.db.insert("files", { 
+          name: args.name,
+          fileId: args.fileId,
+          orgId: args.orgId,
+         })
     },
 })
 

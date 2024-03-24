@@ -150,7 +150,9 @@ return (
                     </FormItem>
                   )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit"
+                disabled={form.formState.isLoading}
+                >Submit</Button>
               </form>
             </Form>
           </DialogDescription>
