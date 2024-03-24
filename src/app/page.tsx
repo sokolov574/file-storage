@@ -74,7 +74,7 @@ export default function Home() {
     setIsFileDialogOpen(false);
 
     toast({
-      variant: "default",
+      variant: "success",
       title: "File Uploaded",
           description: "Now everyone can view your file",
     })
