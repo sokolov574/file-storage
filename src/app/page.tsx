@@ -106,7 +106,10 @@ return (
     <div className="flex justify-between items-center">
       <h1 className="text-4xl font-bold">Your Files</h1>
 
-      <Dialog open={isFileDialogOpen} onOpenChange={setIsFileDialogOpen}>
+      <Dialog open={isFileDialogOpen} onOpenChange={(isOpen) => {
+        setIsFileDialogOpen(isOpen)
+        form.reset();
+        }}>
         <DialogTrigger asChild>
           <Button onClick={() => {}}>Upload File</Button>
         </DialogTrigger>
