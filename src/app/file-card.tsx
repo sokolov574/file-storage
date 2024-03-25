@@ -9,7 +9,7 @@ import {
 import { Doc } from "../../convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
 
-export function FileCard({ file }: { file: Doc<"files"> }): JSX.Element {
+export function FileCard({ file }: { file: Doc<"files"> }) {
     return (
         <Card>
             <CardHeader>
@@ -20,7 +20,6 @@ export function FileCard({ file }: { file: Doc<"files"> }): JSX.Element {
                 <p>Card Content</p>
             </CardContent>
             <CardFooter>
-                <p>Card Footer</p>
                 <Button>Download</Button>
             </CardFooter>
         </Card>
