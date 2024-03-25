@@ -9,11 +9,37 @@ import {
 import { Doc } from "../../convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
 
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
+  import { DeleteIcon } from "lucide-react";
+
+  function FileCardActions() {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel className="flex-gap-1 text-red-600">
+            <DeleteIcon /> Delete
+            </DropdownMenuLabel>
+            </DropdownMenuContent>
+      </DropdownMenu>
+  
+    )
+  }
+
 export function FileCard({ file }: { file: Doc<"files"> }) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{file.name} Title</CardTitle>
+                <CardTitle>
+                    {file.name} <FileCardActions /> 
+                </CardTitle>
                 {/* <CardDescription>Card Description</CardDescription> */}
             </CardHeader>
             <CardContent>
