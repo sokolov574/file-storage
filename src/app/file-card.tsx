@@ -17,14 +17,14 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-  import { DeleteIcon } from "lucide-react";
+  import { DeleteIcon, MoreVertical } from "lucide-react";
 
   function FileCardActions() {
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+        <DropdownMenuTrigger><MoreVertical/></DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel className="flex-gap-1 text-red-600">
+          <DropdownMenuLabel className="flex-gap-1 text-red-600 items-center cursor-pointer">
             <DeleteIcon /> Delete
             </DropdownMenuLabel>
             </DropdownMenuContent>
