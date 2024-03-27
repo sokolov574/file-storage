@@ -19,8 +19,39 @@ import {
   } from "@/components/ui/dropdown-menu"
   import { DeleteIcon, MoreVertical } from "lucide-react";
 
-  function FileCardActions() {
-    return (
+  import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
+  
+
+function FileCardActions() {
+ return (
+    <>
+    <AlertDialog>
+    <AlertDialogTrigger>Open</AlertDialogTrigger>
+    <AlertDialogContent>
+        <AlertDialogHeader>
+        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your account
+            and remove your data from our servers.
+        </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+    </AlertDialogContent>
+    </AlertDialog>
+
       <DropdownMenu>
         <DropdownMenuTrigger><MoreVertical/></DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -29,17 +60,20 @@ import {
             </DropdownMenuLabel>
             </DropdownMenuContent>
       </DropdownMenu>
-  
+      </>
     )
-  }
+}
 
 export function FileCard({ file }: { file: Doc<"files"> }) {
     return (
         <Card>
-            <CardHeader>
+            <CardHeader className="relative">
                 <CardTitle>
                     {file.name} <FileCardActions /> 
                 </CardTitle>
+                <div className="absolute top-2 right-2">
+                    <FileCardActions />
+                </div>
                 {/* <CardDescription>Card Description</CardDescription> */}
             </CardHeader>
             <CardContent>
