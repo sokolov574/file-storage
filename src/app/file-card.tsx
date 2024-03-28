@@ -54,10 +54,15 @@ function FileCardActions({ file }: { file: Doc<"files"> }) {
         <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
         <AlertDialogAction 
-        onClick={() => {
-            deleteFile({
+        onClick={ async() => {
+           await deleteFile({
                 fileId: file._id
             })
+            toast({
+                variant: "success",
+                title: "File  deleted",
+                description: "Your file is now gone from the system",
+              })
         }}
         >
             Continue
