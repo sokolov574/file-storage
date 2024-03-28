@@ -31,9 +31,12 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
   
 
-function FileCardActions() {
+function FileCardActions({ file }: { file: Doc<"files"> }) {
+    const deleteFile = useMutation(api.files.deleteFile)
     const [isConfirmOpen, serIsConfirmOpen] = useState(false);
  return (
     <>
@@ -48,9 +51,15 @@ function FileCardActions() {
         </AlertDialogHeader>
         <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction onClick={() => {
-            // TODO: Delete the file
-        }}>Continue</AlertDialogAction>
+        <AlertDialogAction 
+        onClick={() => {
+            deleteFile({
+                fileId: file._id
+            })
+        }}
+        >
+            Continue
+            </AlertDialogAction>
         </AlertDialogFooter>
     </AlertDialogContent>
     </AlertDialog>
@@ -74,12 +83,11 @@ export function FileCard({ file }: { file: Doc<"files"> }) {
         <Card>
             <CardHeader className="relative">
                 <CardTitle>
-                    {file.name} <FileCardActions /> 
+                    {file.name}
                 </CardTitle>
                 <div className="absolute top-2 right-2">
-                    <FileCardActions />
+                    <FileCardActions file={file}/>
                 </div>
-                {/* <CardDescription>Card Description</CardDescription> */}
             </CardHeader>
             <CardContent>
                 <p>Card Content</p>
