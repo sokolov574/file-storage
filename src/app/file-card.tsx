@@ -30,12 +30,14 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { useState } from "react";
   
 
 function FileCardActions() {
+    const [isConfirmOpen, serIsConfirmOpen] = useState(false);
  return (
     <>
-    <AlertDialog>
+    <AlertDialog open={isConfirmOpen} onOpenChange={serIsConfirmOpen}>
     <AlertDialogTrigger>Open</AlertDialogTrigger>
     <AlertDialogContent>
         <AlertDialogHeader>
