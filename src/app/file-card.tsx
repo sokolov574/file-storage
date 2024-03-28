@@ -33,10 +33,12 @@ import {
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import { useToast } from "@/components/ui/use-toast";
   
 
 function FileCardActions({ file }: { file: Doc<"files"> }) {
     const deleteFile = useMutation(api.files.deleteFile)
+    const { toast } = useToast();
     const [isConfirmOpen, serIsConfirmOpen] = useState(false);
  return (
     <>
