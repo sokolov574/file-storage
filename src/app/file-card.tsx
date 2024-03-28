@@ -38,7 +38,6 @@ function FileCardActions() {
  return (
     <>
     <AlertDialog open={isConfirmOpen} onOpenChange={serIsConfirmOpen}>
-    <AlertDialogTrigger>Open</AlertDialogTrigger>
     <AlertDialogContent>
         <AlertDialogHeader>
         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -49,15 +48,19 @@ function FileCardActions() {
         </AlertDialogHeader>
         <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Continue</AlertDialogAction>
+        <AlertDialogAction onClick={() => {
+            // TODO: Delete the file
+        }}>Continue</AlertDialogAction>
         </AlertDialogFooter>
     </AlertDialogContent>
     </AlertDialog>
 
       <DropdownMenu>
         <DropdownMenuTrigger><MoreVertical/></DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel className="flex-gap-1 text-red-600 items-center cursor-pointer">
+        <DropdownMenuContent>         
+          <DropdownMenuLabel 
+          onClick={() => serIsConfirmOpen(true)}
+          className="flex-gap-1 text-red-600 items-center cursor-pointer">
             <DeleteIcon /> Delete
             </DropdownMenuLabel>
             </DropdownMenuContent>
