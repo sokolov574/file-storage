@@ -25,9 +25,9 @@ return (
       <h1 className="text-4xl font-bold">Your Files</h1>
       <UploadButton />
     </div>
-    <div className="grid grid-cols-4 gap-4">
-      {files && files.length === 0 && (
-        <div className="flex flex-col gap-4">
+
+    {files && files.length === 0 && (
+        <div className="flex flex-col gap-4 items-center mt-12">
       <Image
         alt="an image of a picture and directory icon"
         width="300"
@@ -35,9 +35,11 @@ return (
         src="/empty.svg"
       />
 
-      You have no files, go ahead and upload one now 
+      <div className="text-2xl">You have no files, go ahead and upload one now</div> 
       </div>
     )}
+    <div className="grid grid-cols-4 gap-4 w-f">
+    
 
     {files?.map(file => {
       return <FileCard key={file._id} file={file} />
