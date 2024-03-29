@@ -59,7 +59,7 @@ function FileCardActions({ file }: { file: Doc<"files"> }) {
                 fileId: file._id
             })
             toast({
-                variant: "success",
+                variant: "default",
                 title: "File  deleted",
                 description: "Your file is now gone from the system",
               })
