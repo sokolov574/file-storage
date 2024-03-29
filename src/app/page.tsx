@@ -27,12 +27,16 @@ return (
     </div>
     <div className="grid grid-cols-4 gap-4">
       {files && files.length === 0 && (
+        <div className="flex flex-col gap-4">
       <Image
         alt="an image of a picture and directory icon"
         width="300"
         height="300"
         src="/empty.svg"
       />
+
+      You have no files, go ahead and upload one now 
+      </div>
     )}
 
     {files?.map(file => {
