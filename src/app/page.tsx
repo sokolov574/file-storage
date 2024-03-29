@@ -26,13 +26,14 @@ return (
       <UploadButton />
     </div>
     <div className="grid grid-cols-4 gap-4">
-
+      {files && files.length === 0 && (
       <Image
         alt="an image of a picture and directory icon"
-        width="200"
-        height="200"
+        width="300"
+        height="300"
         src="/empty.svg"
       />
+    )}
 
     {files?.map(file => {
       return <FileCard key={file._id} file={file} />
