@@ -5,6 +5,7 @@ import {  useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api"; 
 import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
+import Image from "next/image";
 
 
 
@@ -25,6 +26,13 @@ return (
       <UploadButton />
     </div>
     <div className="grid grid-cols-4 gap-4">
+
+      <Image
+        alt="an image of a picture and directory icon"
+        width="200"
+        height="200"
+        src="/empty.svg"
+      />
 
     {files?.map(file => {
       return <FileCard key={file._id} file={file} />
