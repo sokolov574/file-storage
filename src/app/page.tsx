@@ -24,7 +24,7 @@ return (
     
 
     {files && files.length === 0 && (
-        <div className="flex flex-col gap-4 items-center mt-12">
+        <div className="flex flex-col gap-8 items-center mt-12">
       <Image
         alt="an image of a picture and directory icon"
         width="300"
