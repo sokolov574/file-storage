@@ -96,7 +96,8 @@ export function FileCard({ file }: { file: Doc<"files"> }) {
     return (
         <Card>
             <CardHeader className="relative">
-                <CardTitle>
+                <CardTitle className="flex gap-2">
+                <div className="flex justify-center">{typeIcons[file.type]}</div>
                     {file.name}
                 </CardTitle>
                 <div className="absolute top-2 right-2">
@@ -104,7 +105,6 @@ export function FileCard({ file }: { file: Doc<"files"> }) {
                 </div>
             </CardHeader>
             <CardContent>
-                <p>{typeIcons[file.type]}</p>
             </CardContent>
             <CardFooter>
                 <Button>Download</Button>
