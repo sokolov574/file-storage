@@ -150,8 +150,11 @@ return (
                 type="submit"
                 disabled={form.formState.isSubmitting} 
                 className="flex gap-1">
-                {form.formState.isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
-                Submit</Button>
+                {form.formState.isSubmitting && 
+                <Loader2 className="h-4 w-4 animate-spin" />
+                }
+                Submit
+                </Button>
               </form>
             </Form>
           </DialogDescription>
