@@ -112,7 +112,10 @@ export function FileCard({ file }: { file: Doc<"files"> }) {
                 {file.type === "csv" && <GanttChartIcon className="w-20 h-20" />}
             </CardContent>
             <CardFooter className="flex justify-center">
-                <Button>Download</Button>
+                <Button onClick={() => {
+                    // open a new tab to the file location on convex
+                    window.open(`https://precious-finch-286.convex.cloud/${file.fileId}`, "_blank")
+                }}>Download</Button>
             </CardFooter>
         </Card>
 
