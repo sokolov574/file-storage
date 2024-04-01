@@ -45,14 +45,15 @@ export function UploadButton() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
+      file: undefined,
     },
   })
+
   const fileRef = form.register("file");
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values.file)
+    if(!orgId) return;
+
     const postUrl = await generateUploadUrl();
 
     const fileType = values.file[0].type;
@@ -132,7 +133,7 @@ return (
                     <FormItem>
                       <FormLabel>Title</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

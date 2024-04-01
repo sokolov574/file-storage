@@ -7,6 +7,8 @@ import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
+import { SearchBar } from "./search-bar";
+import { useForm } from "react-hook-form";
 
 
 
@@ -49,6 +51,8 @@ return (
       <>
       <div className="flex justify-between items-center mb-8">
       <h1 className="text-4xl font-bold">Your Files</h1>
+
+      <SearchBar />
 
       <UploadButton />
     </div>
