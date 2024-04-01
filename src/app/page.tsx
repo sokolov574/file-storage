@@ -12,6 +12,21 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 
+function Placeholder() {
+  return (
+    <div className="flex flex-col gap-8 items-center mt-24">
+    <Image
+      alt="an image of a picture and directory icon"
+      width={200} 
+      height={200}
+      src="/empty.svg"
+/>
+
+      <div className="text-2xl">You have no files, go ahead and upload one now</div> 
+      <UploadButton />
+    </div>
+  );
+}
 
 export default function Home() {
   const  organization = useOrganization();
@@ -37,21 +52,7 @@ return (
     </div>
     )}
 
-    {!isLoading && !query && files.length === 0 && (
-        <div className="flex flex-col gap-8 items-center mt-24">
-      <Image
-        alt="an image of a picture and directory icon"
-        width="300"
-        height="300"
-        src="/empty.svg"
-      />
-
-      <div className="text-2xl">You have no files, go ahead and upload one now</div> 
-      <UploadButton />
-      </div>
-    )}
-
-    
+    {!isLoading && !query && files.length === 0 && <Placeholder />}
 
     {!isLoading && (
       <>
@@ -62,19 +63,7 @@ return (
       <UploadButton />
     </div>
 
-    {files.length === 0 && (
-        <div className="flex flex-col gap-8 items-center mt-24">
-      <Image
-        alt="an image of a picture and directory icon"
-        width="300"
-        height="300"
-        src="/empty.svg"
-      />
-
-      <div className="text-2xl">You have no files, go ahead and upload one now</div> 
-      <UploadButton />
-      </div>
-    )}
+    {files.length === 0 && <Placeholder /> }
 
     <div className="grid grid-cols-3 gap-4">
     

@@ -91,7 +91,7 @@ export const getFiles = query({
           const query = args.query;
 
           if (query) {
-            return files.filter(file => file.type.includes(query));
+            return files.filter(file => file.name.includes(query));
           } else {
             return files;
           }
