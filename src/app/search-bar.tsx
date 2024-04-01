@@ -72,7 +72,7 @@ import { z } from "zod";
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  query: z.string().min(1).max(200),
+  query: z.string().min(0).max(200),
 });
 
 export function SearchBar() {
@@ -88,15 +88,14 @@ export function SearchBar() {
   return (
     <div>
       <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-3 items-center">
                 <FormField
                   control={form.control}
                   name="query"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Title</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input {...field} placeholder="your file names" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

@@ -51,7 +51,6 @@ return (
       <>
       <div className="flex justify-between items-center mb-8">
       <h1 className="text-4xl font-bold">Your Files</h1>
-
       <SearchBar />
 
       <UploadButton />
