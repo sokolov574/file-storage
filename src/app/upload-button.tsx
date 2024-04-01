@@ -55,7 +55,7 @@ export function UploadButton() {
     console.log(values.file)
     const postUrl = await generateUploadUrl();
 
-    const fileType = values.file[0]!.type;
+    const fileType = values.file[0].type;
 
     const result = await fetch(postUrl, {
       method: "POST",
@@ -171,3 +171,8 @@ return (
       </Dialog>
 
 )};
+
+
+
+
+

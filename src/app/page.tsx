@@ -52,7 +52,7 @@ return (
 
       <UploadButton />
     </div>
-    <div className="grid grid-cols-4 gap-4 w-f">
+    <div className="grid grid-cols-3 gap-4 w-f">
     
 
     {files?.map(file => {
