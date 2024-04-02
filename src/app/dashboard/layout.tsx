@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { FilesIcon, StarIcon } from "lucide-react";
 import Link from "next/link";
+import SideNav from "../side-nav";
 
 
 /* export const metadata: Metadata = {
@@ -17,16 +18,7 @@ export default function DashboardLayout({
     <main className="container mx-auto pt-12">
     <div className="flex gap-8">
     <div className="w-40 flex flex-col gap-4">
-      <Link href="/dashboard/files">
-        <Button variant={"link"} className="flex gap-2">
-          <FilesIcon /> All Files
-        </Button>
-      </Link>
-      <Link href="/dashboard/favorites">
-        <Button variant={"link"} className="flex gap-2">
-          <StarIcon /> Favorites
-        </Button>
-      </Link>
+      <SideNav />
     </div>
 
     <div className="w-full">{children}</div>
