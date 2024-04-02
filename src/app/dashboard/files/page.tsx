@@ -2,7 +2,7 @@
 
 import { useOrganization, useUser } from "@clerk/nextjs";
 import {  useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api"; 
+import { api } from "../../../../convex/_generated/api"; 
 import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
 import Image from "next/image";
@@ -31,7 +31,7 @@ function Placeholder() {
   );
 }
 
-export default function Home() {
+export default function FilesPage() {
   const  organization = useOrganization();
   const user = useUser();
   const [query, setQuery] = useState("");
@@ -46,25 +46,9 @@ const files = useQuery(api.files.getFiles, orgId ? { orgId, query } : "skip");
 const isLoading = files === undefined;
 
 return (
-  <main className="container mx-auto pt-12">
-    <div className="flex gap-8">
-    <div className="w-40 flex flex-col gap-4">
-      <Link href="/dashboard/files">
-        <Button variant={"link"} className="flex gap-2">
-          <FileIcon /> All Files
-        </Button>
-      </Link>
 
-      <Link href="/dashboard/favorites">
-        <Button variant={"link"} className="flex gap-2">
-          <StarIcon /> Favorites
-        </Button>
-      </Link>
-
-      
-    </div>
-
-    <div className="w-full">
+    
+    <div>
     {isLoading && (
     <div className="flex flex-col gap-8 items-center mt-24">
       <Loader2 className="h-32 w-32 animate-spin text-gray-500" />
@@ -95,7 +79,5 @@ return (
       </>
     )}
     </div>
-    </div>
-
-  </main>
+  
 )};
