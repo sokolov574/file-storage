@@ -17,7 +17,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-  import { DeleteIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, TextIcon } from "lucide-react";
+  import { DeleteIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, StarIcon, TextIcon, TrashIcon } from "lucide-react";
 
 
   import {
@@ -75,12 +75,19 @@ function FileCardActions({ file }: { file: Doc<"files"> }) {
 
       <DropdownMenu>
         <DropdownMenuTrigger><MoreVertical/></DropdownMenuTrigger>
-        <DropdownMenuContent>         
-          <DropdownMenuLabel 
+        <DropdownMenuContent>    
+
+        <DropdownMenuItem 
+          onClick={() => {}}
+          className="flex-gap-1 text-red-600 items-center cursor-pointer">
+            <StarIcon /> Favorite
+        </DropdownMenuItem>
+
+        <DropdownMenuItem 
           onClick={() => serIsConfirmOpen(true)}
           className="flex-gap-1 text-red-600 items-center cursor-pointer">
-            <DeleteIcon /> Delete
-            </DropdownMenuLabel>
+            <TrashIcon /> Delete
+        </DropdownMenuItem>
             </DropdownMenuContent>
       </DropdownMenu>
       </>
