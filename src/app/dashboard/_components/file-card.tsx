@@ -79,9 +79,11 @@ function FileCardActions({ file }: { file: Doc<"files"> }) {
 
         <DropdownMenuItem 
           onClick={() => {}}
-          className="flex-gap-1 text-red-600 items-center cursor-pointer">
+          className="flex-gap-1 items-center cursor-pointer">
             <StarIcon /> Favorite
         </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
 
         <DropdownMenuItem 
           onClick={() => serIsConfirmOpen(true)}
