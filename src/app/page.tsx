@@ -6,10 +6,13 @@ import { api } from "../../convex/_generated/api";
 import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
 import Image from "next/image";
-import { Loader2 } from "lucide-react";
+import { FileIcon, Loader2 } from "lucide-react";
 import { SearchBar } from "./search-bar";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
 
 
 function Placeholder() {
@@ -44,7 +47,19 @@ const isLoading = files === undefined;
 
 return (
   <main className="container mx-auto pt-12">
-    
+    <div className="flex gap-10">
+    <div className="w-40 flex justify-start">
+      <Link href="/">
+        <Button variant={"link"} className="flex gap-2">
+          <FileIcon /> All Files
+        </Button>
+      </Link>
+
+
+      
+    </div>
+
+    <div className="w-full">
     {isLoading && (
     <div className="flex flex-col gap-8 items-center mt-24">
       <Loader2 className="h-32 w-32 animate-spin text-gray-500" />
@@ -74,6 +89,8 @@ return (
     </div>
       </>
     )}
+    </div>
+    </div>
 
   </main>
 )};
