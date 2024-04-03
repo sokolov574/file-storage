@@ -10,7 +10,7 @@ export default defineSchema({
     files: defineTable({
       name: v.string(), 
       type: fileTypes,
-      orgId: v.optional(v.string()),
+      orgId: v.string(),
       fileId: v.id("_storage"),
   })
     .index("by_orgId", ["orgId"]),
@@ -20,7 +20,7 @@ export default defineSchema({
       orgId: v.string(),
       userId: v.id("users"),
 
-    }) .index("by_userId_orgId_fileId", ["orgId", "fileId", "userId"]),
+    }) .index("by_userId_orgId_fileId", ["userId", "orgId", "fileId"]),
 
   users: defineTable({
     tokenIdentifier: v.string(),

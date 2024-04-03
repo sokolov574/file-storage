@@ -149,7 +149,6 @@ export const toggleFavorite = mutation({
       throw new ConvexError("this File does not exist");
     }
 
-    //TODO delete or no
     if (!file.orgId) {
       throw new ConvexError("File does not have an organization ID");
     }
@@ -166,17 +165,29 @@ export const toggleFavorite = mutation({
    const user = await ctx.db
    .query("users")
    .withIndex("by_tokenIdentifier", 
-    q => q.eq("tokenIdentifier", identity.tokenIdentifier)
+    (q) => q.eq("tokenIdentifier", identity.tokenIdentifier)
    )
    .first();
 
- /*    const favorites = await ctx.db.query("favorites")
-    .withIndex("by_userId_orgId_fileId", q => {
-      return q
-      q.eq("orgId", file.orgId)
-      .eq("fileId", file._id)
-      .eq("userId", identity.userId)
-    }) */
+   if (!user) {
+      throw new ConvexError("User not found");
+   }
 
+    const favorite = await ctx.db
+    .query("favorites")
+    .withIndex("by_userId_orgId_fileId", (q) => 
+    q.eq('userId', user._id).eq('orgId', file.orgId).eq('fileId', file._id)
+    )
+    .first();
+
+    if (!favorite) {
+      await ctx.db.insert("favorites", {
+        fileId: file._id,
+        userId: user._id,
+        orgId: file.orgId,
+      });
+    } else {
+      await ctx.db.delete(favorite._id);
+    }
   }
 });
