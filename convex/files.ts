@@ -163,9 +163,14 @@ export const toggleFavorite = mutation({
       throw new ConvexError("You do not have access to delete this file")
     }
 
-    /* const use = await ctx.db.get("users", identity.userId);
+   const user = await ctx.db
+   .query("users")
+   .withIndex("by_tokenIdentifier", 
+    q => q.eq("tokenIdentifier", identity.tokenIdentifier)
+   )
+   .first();
 
-    const favorites = await ctx.db.query("favorites")
+ /*    const favorites = await ctx.db.query("favorites")
     .withIndex("by_userId_orgId_fileId", q => {
       return q
       q.eq("orgId", file.orgId)
