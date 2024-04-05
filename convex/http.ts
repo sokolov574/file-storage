@@ -26,14 +26,14 @@ http.route({
         case "user.created":
           await ctx.runMutation(internal.users.createUser, {
             tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.id}`,
-            clerkId: result.data.id,
           });
           break;
         case 'organizationMembership.created':
           await ctx.runMutation(internal.users.addOrgIdToUser, {
             tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
             clerkId: result.data.id,
-            orgId: result.data.organization.id
+            orgId: result.data.organization.id,
+            role: result.data.role === "admin" ? "admin" : "member",
           });
           break;
       }

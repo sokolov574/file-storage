@@ -18,7 +18,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
   import { DeleteIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, StarHalf, StarIcon, TextIcon, TrashIcon } from "lucide-react";
-
+  import { FaStar } from "react-icons/fa";
 
   import {
     AlertDialog,
@@ -36,6 +36,7 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
+import { Protect } from "@clerk/nextjs";
   
 
 function FileCardActions({ file, isFavorited 
@@ -91,24 +92,29 @@ function FileCardActions({ file, isFavorited
           >
             {isFavorited ? (
               
-              <div>
-                <StarHalf className="w-4 h-4"/>Unfavorite
+              <div className="flex gap-1 items-center">
+                <FaStar className="w-6 h-6"/>Unfavorite
               </div> 
              
-          ) : (
-            <div>
-              <StarIcon className="w-4 h-4" />Favorite
-            </div>
-          )} 
+              ) : (
+                <div className="flex gap-1 items-center">
+                  <StarIcon className="w-6 h-6" />Favorite
+                </div>
+              )} 
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
+        <Protect
+        role="org:admin"
+        fallback={<></>}
+        > 
 
         <DropdownMenuItem 
           onClick={() => serIsConfirmOpen(true)}
-          className="flex-gap-1 text-red-600 items-center cursor-pointer">
+          className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
             <TrashIcon /> Delete
         </DropdownMenuItem>
+        </Protect>
             </DropdownMenuContent>
       </DropdownMenu>
       </>
