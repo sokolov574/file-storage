@@ -90,10 +90,16 @@ function FileCardActions({ file, isFavorited
           className="flex-gap-1 items-center cursor-pointer"
           >
             {isFavorited ? (
-            <StarHalf className="w-4 h-4"/> 
+              
+              <div>
+                <StarHalf className="w-4 h-4"/>Unfavorite
+              </div> 
+             
           ) : (
-            <StarIcon className="w-4 h-4" />
-          )} Favorite
+            <div>
+              <StarIcon className="w-4 h-4" />Favorite
+            </div>
+          )} 
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
