@@ -104,17 +104,17 @@ function FileCardActions({ file, isFavorited
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
-        <Protect
+       {/*  <Protect
         role="org:admin"
         fallback={<></>}
-        > 
+        >  */}
 
         <DropdownMenuItem 
           onClick={() => serIsConfirmOpen(true)}
           className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
-            <TrashIcon /> Delete
+            <TrashIcon className="w-6 h-6 mr-1" />Delete
         </DropdownMenuItem>
-        </Protect>
+       {/*  </Protect> */}
             </DropdownMenuContent>
       </DropdownMenu>
       </>
