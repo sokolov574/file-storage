@@ -77,6 +77,8 @@ export const getFiles = query({
         orgId: v.string(),
         query: v.optional(v.string()),
         favorites: v.optional(v.boolean()),
+        deletedOnly: v.optional(v.boolean()),
+
     },
     async handler(ctx, args) {
         const hasAccess = await hasAccessToOrg(
@@ -114,9 +116,14 @@ export const getFiles = query({
               );
           }
 
+
+          if (args.deletedOnly) {
+            files = files.filter(file => file.shouldDelete);
+          }
+
           return files;
         }
-})
+    });
 
 export const deleteFile = mutation({
   args: { fileId: v.id("files") },

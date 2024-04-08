@@ -6,7 +6,7 @@ export default function FavoritesPage() {
 
 
     return <div>
-        <FileBrowser title="Favorites Files" favoritesOnly />
+        <FileBrowser title="Favorites Files" deletedOnly />
     </div>
 }
 
