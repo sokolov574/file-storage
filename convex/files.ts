@@ -141,6 +141,9 @@ export const deleteFile = mutation({
     }
 
     await ctx.db.delete(args.fileId);
+    await ctx.db.patch(args.fileId, { 
+      shouldDelete: true,
+     });
   }
 });
 
