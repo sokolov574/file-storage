@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { FilesIcon, Gamepad2, StarIcon } from "lucide-react";
+import { FilesIcon, Gamepad2, StarIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from 'clsx';
@@ -39,7 +39,7 @@ export default function SideNav() {
                 className={clsx("flex gap-2", {
                     "text-blue-400": pathName.includes("/dashboard/trash")
                 })}>
-                    <StarIcon /> Trash
+                    <TrashIcon /> Trash
                 </Button>
             </Link>
             
