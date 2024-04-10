@@ -64,20 +64,3 @@ export const updateRoleInOrgForUser = internalMutation({
     }
 });
 
-
-
-
-
-
-/* export const addOrgIdToUser = internalMutation({
-    args: { tokenIdentifier: v.string(), clerkId: v.string(), orgId: v.string() },
-    async handler(ctx, args) {
-        const user = await getUser(ctx, args.tokenIdentifier)
-
-        await ctx.db.insert("users", {
-            tokenIdentifier: args.tokenIdentifier,
-
-            orgIds: [...user.orgIds, args.orgId],
-        })
-    }
-}); */

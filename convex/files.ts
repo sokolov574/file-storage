@@ -180,7 +180,7 @@ export const getAllFavorites = query({
   args: { orgId: v.string() },
   async handler(ctx, args) {
 
-    const hasAccess = await hasAccessToOrg(
+    const hasAccess = await hasAccessToOrg( 
       ctx,
       args.orgId);
 
