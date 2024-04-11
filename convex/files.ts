@@ -118,7 +118,9 @@ export const getFiles = query({
 
 
           if (args.deletedOnly) {
-            files = files.filter(file => file.shouldDelete);
+            files = files.filter((file) => file.shouldDelete);
+          } else {
+            files = files.filter((file) => !file.shouldDelete);
           }
 
           return files;
@@ -140,7 +142,6 @@ export const deleteFile = mutation({
       throw new ConvexError("You do not have admin access to delete this file")
     }
 
-    await ctx.db.delete(args.fileId);
     await ctx.db.patch(args.fileId, { 
       shouldDelete: true,
      });
