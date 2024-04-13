@@ -44,6 +44,7 @@ function FileCardActions({ file, isFavorited
   file: Doc<"files">, 
   isFavorited: boolean}) {
     const deleteFile = useMutation(api.files.deleteFile)
+    const restoreFile = useMutation(api.files.restoreFile)
     const toggleFavorite = useMutation(api.files.toggleFavorite)
     const { toast } = useToast();
     const [isConfirmOpen, serIsConfirmOpen] = useState(false);
@@ -109,7 +110,15 @@ function FileCardActions({ file, isFavorited
         >  */}
 
         <DropdownMenuItem 
-          onClick={() => serIsConfirmOpen(true)}
+          onClick={() => {
+            if (file.shouldDelete) {
+              restoreFile({
+                fileId: file._id,
+              })
+            } else {
+            serIsConfirmOpen(true)
+           }
+          }}
           className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
 
         {file.shouldDelete ? (
@@ -119,11 +128,9 @@ function FileCardActions({ file, isFavorited
         ) : (
 
           <div className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
-            <UndoIcon className="w-6 h-6 mr-1" /> Restore
+            <UndoIcon className="w-6 h-6 mr-1" /> Delete
           </div>
         )}
-           
-            <TrashIcon className="w-6 h-6 mr-1" />Delete
         </DropdownMenuItem>
        {/*  </Protect> */}
             </DropdownMenuContent>
