@@ -17,7 +17,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-  import { DeleteIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, StarHalf, StarIcon, TextIcon, TrashIcon } from "lucide-react";
+  import { DeleteIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, StarHalf, StarIcon, TextIcon, TrashIcon, UndoIcon } from "lucide-react";
   import { FaStar } from "react-icons/fa";
 
   import {
@@ -111,6 +111,18 @@ function FileCardActions({ file, isFavorited
         <DropdownMenuItem 
           onClick={() => serIsConfirmOpen(true)}
           className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
+
+        {file.shouldDelete ? (
+          <div className="flex-gap-1 items-center cursor-pointer hover:text-green-600">
+            <UndoIcon className="w-6 h-6 mr-1" /> Restore
+          </div>
+        ) : (
+
+          <div className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
+            <UndoIcon className="w-6 h-6 mr-1" /> Restore
+          </div>
+        )}
+           
             <TrashIcon className="w-6 h-6 mr-1" />Delete
         </DropdownMenuItem>
        {/*  </Protect> */}
