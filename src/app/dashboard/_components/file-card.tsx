@@ -122,12 +122,12 @@ function FileCardActions({ file, isFavorited
           className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
 
         {file.shouldDelete ? (
-          <div className="flex-gap-1 items-center cursor-pointer hover:text-green-600">
+          <div className="flex-gap-1 items-center cursor-ponter hover:text-green-600">
             <UndoIcon className="w-6 h-6 mr-1" /> Restore
           </div>
         ) : (
 
-          <div className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
+          <div className="flex-gap-1 items-center cursor-pointer hover:text-red-700">
             <UndoIcon className="w-6 h-6 mr-1" /> Delete
           </div>
         )}
