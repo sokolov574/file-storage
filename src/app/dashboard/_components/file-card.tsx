@@ -88,7 +88,7 @@ function FileCardActions({ file, isFavorited
               fileId: file._id,
             })
           }}
-          className="flex-gap-1 items-center cursor-pointer"
+          className="flex gap-1 items-center cursor-pointer"
           >
             {isFavorited ? (
               
@@ -119,16 +119,16 @@ function FileCardActions({ file, isFavorited
             serIsConfirmOpen(true)
            }
           }}
-          className="flex-gap-1 items-center cursor-pointer hover:text-red-600">
+          className="flex gap-1 items-center cursor-pointer hover:text-red-600">
 
         {file.shouldDelete ? (
-          <div className="flex-gap-1 items-center cursor-ponter hover:text-green-600">
+          <div className="flex gap-1 items-center cursor-ponter hover:text-green-600">
             <UndoIcon className="w-6 h-6 mr-1" /> Restore
           </div>
         ) : (
 
-          <div className="flex-gap-1 items-center cursor-pointer hover:text-red-700">
-            <UndoIcon className="w-6 h-6 mr-1" /> Delete
+          <div className="flex gap-1 items-center cursor-pointer hover:text-red-700">
+            <TrashIcon className="w-6 h-6" /> Delete
           </div>
         )}
         </DropdownMenuItem>
