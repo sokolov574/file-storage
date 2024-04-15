@@ -104,10 +104,10 @@ function FileCardActions({ file, isFavorited
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
-       {/*  <Protect
+        <Protect
         role="org:admin"
         fallback={<></>}
-        >  */}
+        > 
 
         <DropdownMenuItem 
           onClick={() => {
@@ -132,7 +132,7 @@ function FileCardActions({ file, isFavorited
           </div>
         )}
         </DropdownMenuItem>
-       {/*  </Protect> */}
+        </Protect>
             </DropdownMenuContent>
       </DropdownMenu>
       </>
