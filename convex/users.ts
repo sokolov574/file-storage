@@ -32,6 +32,18 @@ export const createUser = internalMutation({
     }
 });
 
+export const updateUser = internalMutation({
+    args: { tokenIdentifier: v.string(), name: v.string(), image: v.string() },
+    async handler(ctx, args) {
+        await ctx.db.insert("users", {
+            tokenIdentifier: args.tokenIdentifier,
+            orgIds: [],
+            name: args.name,
+            image: args.image,
+        });
+    }
+});
+
 
 export const addOrgIdToUser = internalMutation({
     args: { tokenIdentifier: v.string(), clerkId: v.string(), orgId: v.string(), role: roles},

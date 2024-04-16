@@ -32,6 +32,16 @@ http.route({
             image: result.data.image_url,
           });
           break;
+
+          case "user.updated":
+          await ctx.runMutation(internal.users.updateUser, {
+            tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.id}`,
+            name: `${result.data.first_name ?? ''} ${
+              result.data.last_name ?? ''
+            }`,
+            image: result.data.image_url,
+          });
+          break;
         case 'organizationMembership.created':
           await ctx.runMutation(internal.users.addOrgIdToUser, {
             tokenIdentifier: `https://fond-sawfish-55.clerk.accounts.dev|${result.data.public_user_data.user_id}`,
