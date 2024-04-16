@@ -6,6 +6,8 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import { Doc, Id } from "../../../../convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
 
@@ -49,9 +51,7 @@ function FileCardActions({
     const deleteFile = useMutation(api.files.deleteFile)
     const restoreFile = useMutation(api.files.restoreFile)
     const toggleFavorite = useMutation(api.files.toggleFavorite)
-    const userProfile = useQuery(api.users.getUserProfile, {
-      userId: file.userId,
-    })
+   
     const { toast } = useToast();
 
     const [isConfirmOpen, serIsConfirmOpen] = useState(false);
@@ -156,6 +156,10 @@ export function FileCard({ file, favorites
   file: Doc<"files">, 
   favorites: Doc<"favorites">[] }) {
 
+    const userProfile = useQuery(api.users.getUserProfile, {
+      userId: file.userId,
+    })
+
     const typeIcons = {
         "image": <ImageIcon />,
         "pdf": <FileTextIcon />,
@@ -190,6 +194,14 @@ export function FileCard({ file, favorites
                 {file.type === "csv" && <GanttChartIcon className="w-20 h-20" />}
             </CardContent>
             <CardFooter className="flex justify-center">
+
+              <Avatar>
+                <AvatarImage src={userProfile?.image} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              {userProfile?.name}
+              
+
                 <Button onClick={() => {
                     // open a new tab to the file location on convex
                     window.open(`https://precious-finch-286.convex.cloud/${file.fileId}`, "_blank")
