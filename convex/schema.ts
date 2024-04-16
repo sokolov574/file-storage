@@ -14,6 +14,7 @@ export default defineSchema({
       type: fileTypes,
       orgId: v.string(),
       fileId: v.id("_storage"),
+      userId: v.id("users"),
       shouldDelete: v.optional(v.boolean()),
   })
     .index("by_orgId", ["orgId"])

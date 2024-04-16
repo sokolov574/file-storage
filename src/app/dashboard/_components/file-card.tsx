@@ -32,21 +32,28 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { ReactNode, useState } from "react";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { Protect } from "@clerk/nextjs";
   
 
-function FileCardActions({ file, isFavorited 
+function FileCardActions({ 
+  file, 
+  isFavorited,
 }: { 
   file: Doc<"files">, 
-  isFavorited: boolean}) {
+  isFavorited: boolean
+}) {
     const deleteFile = useMutation(api.files.deleteFile)
     const restoreFile = useMutation(api.files.restoreFile)
     const toggleFavorite = useMutation(api.files.toggleFavorite)
+    const userProfile = useQuery(api.users.getUserProfile, {
+      userId: file.userId,
+    })
     const { toast } = useToast();
+
     const [isConfirmOpen, serIsConfirmOpen] = useState(false);
  return (
     <>
