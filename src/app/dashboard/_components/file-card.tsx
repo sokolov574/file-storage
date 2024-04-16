@@ -7,6 +7,7 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { formatRelative } from "date-fns";
 
 import { Doc, Id } from "../../../../convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
@@ -19,7 +20,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-  import { DeleteIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, StarHalf, StarIcon, TextIcon, TrashIcon, UndoIcon } from "lucide-react";
+  import { DeleteIcon, FileIcon, FileTextIcon, GanttChartIcon, GanttChartSquareIcon, ImageIcon, MoreVertical, StarHalf, StarIcon, TextIcon, TrashIcon, UndoIcon } from "lucide-react";
   import { FaStar } from "react-icons/fa";
 
   import {
@@ -110,7 +111,15 @@ function FileCardActions({
               )} 
         </DropdownMenuItem>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuItem 
+          onClick={() => {
+            window.open(`https://precious-finch-286.convex.cloud/${file.fileId}`, "_blank")
+}}
+          className="flex gap-1 items-center cursor-pointer"
+          >
+            <FileIcon /> Download 
+        </DropdownMenuItem>
+
         <Protect
         role="org:admin"
         fallback={<></>}
@@ -193,19 +202,17 @@ export function FileCard({ file, favorites
                 {file.type === "pdf" && <FileTextIcon className="w-20 h-20" />}
                 {file.type === "csv" && <GanttChartIcon className="w-20 h-20" />}
             </CardContent>
-            <CardFooter className="flex justify-center">
-
-              <Avatar>
-                <AvatarImage src={userProfile?.image} />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              {userProfile?.name}
-              
-
-                <Button onClick={() => {
-                    // open a new tab to the file location on convex
-                    window.open(`https://precious-finch-286.convex.cloud/${file.fileId}`, "_blank")
-                }}>Download</Button>
+            <CardFooter className="flex justify-between">
+              <div className="flex gap-2 text-xs text-gray-700 w-40 items-center">
+                <Avatar className="w-6 h-6">
+                  <AvatarImage src={userProfile?.image} />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                {userProfile?.name}
+              </div>
+              <div className="text-xs text-gray-700">
+                Uploaded on {formatRelative(new Date(file._creationTime), new Date())}
+              </div>
             </CardFooter>
         </Card>
 
