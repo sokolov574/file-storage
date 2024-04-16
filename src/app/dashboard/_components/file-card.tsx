@@ -182,7 +182,7 @@ export function FileCard({ file, favorites
     return (
         <Card>
             <CardHeader className="relative">
-                <CardTitle className="flex gap-2">
+                <CardTitle className="flex gap-2 text-base font-normal">
                 <div className="flex justify-center">{typeIcons[file.type]}</div>
                     {file.name}
                 </CardTitle>
