@@ -88,7 +88,16 @@ function FileCardActions({
 
       <DropdownMenu>
         <DropdownMenuTrigger><MoreVertical/></DropdownMenuTrigger>
-        <DropdownMenuContent>    
+        <DropdownMenuContent> 
+
+          <DropdownMenuItem 
+          onClick={() => {
+            window.open(`https://precious-finch-286.convex.cloud/${file.fileId}`, "_blank")
+}}
+          className="flex gap-1 items-center cursor-pointer"
+          >
+            <FileIcon /> Download 
+        </DropdownMenuItem>   
 
         <DropdownMenuItem 
           onClick={() => {
@@ -109,15 +118,6 @@ function FileCardActions({
                   <StarIcon className="w-6 h-6" />Favorite
                 </div>
               )} 
-        </DropdownMenuItem>
-
-        <DropdownMenuItem 
-          onClick={() => {
-            window.open(`https://precious-finch-286.convex.cloud/${file.fileId}`, "_blank")
-}}
-          className="flex gap-1 items-center cursor-pointer"
-          >
-            <FileIcon /> Download 
         </DropdownMenuItem>
 
         <Protect
