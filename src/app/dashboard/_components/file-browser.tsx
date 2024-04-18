@@ -12,6 +12,9 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { DataTable } from "./file-table";
+import { columns } from "./colums";
+
 
 
 
@@ -82,6 +85,8 @@ return (
 
             <UploadButton />
           </div>
+
+          <DataTable columns={columns} data={files} />
 
           {files.length === 0 ? (
             <Placeholder />
