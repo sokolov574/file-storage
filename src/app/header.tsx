@@ -9,6 +9,10 @@ export function Header() {
                 <Link href="/" className="flex gap-2 items-center text-xl">
                     <Image src="/logo1.png" width="40" height="40" alt="file storage logo"/>
                  FileStorage</Link>
+                <Button variant={"outline"}>
+                  <Link href="/dashboard/files">Go to Your Files</Link>  
+                </Button>    
+
                   <div className="flex gap-2"/>
             <OrganizationSwitcher />
             <UserButton />
