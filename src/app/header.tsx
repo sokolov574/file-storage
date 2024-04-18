@@ -5,11 +5,12 @@ import Link from "next/link";
 
 export function Header() {
     return <div className="border-b py-4 bg-gray-50">
-             <div className="items center container mx-auto justify-between flex">
-                <Link href="/" className="flex gap-2 items-center text-xl">
+             <div className="items center container mx-auto justify-between flex ">
+                <Link href="/" className="flex gap-2 items-center text-xl text-black">
                     <Image src="/logo1.png" width="40" height="40" alt="file storage logo"/>
                  FileStorage</Link>
-                <Button variant={"outline"}>
+                 
+                <Button className="text-black" variant={"outline"} >
                   <Link href="/dashboard/files">Go to Your Files</Link>  
                 </Button>    
 
