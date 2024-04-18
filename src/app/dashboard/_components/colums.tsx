@@ -2,15 +2,8 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { Doc } from "../../../../convex/_generated/dataModel"
+import { formatRelative } from "date-fns"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
 
 export const columns: ColumnDef<Doc<"files">>[] = [
   {
@@ -20,5 +13,16 @@ export const columns: ColumnDef<Doc<"files">>[] = [
   {
     accessorKey: "type",
     header: "Type",
+  },
+  {
+    header: "Upload On",
+    cell: ({ row }) => {
+        const amount = parseFloat(row.getValue("createdOn"))
+   
+        return (
+        <div>
+            {formatRelative(new Date(row.original._creationTime), new Date())}</div>
+        );
+      },
   },
 ]
