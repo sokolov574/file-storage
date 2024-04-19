@@ -1,19 +1,18 @@
-'use client'
-
+"use client";
 import { useOrganization, useUser } from "@clerk/nextjs";
-import {  useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api"; 
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
 import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
 import Image from "next/image";
-import { FileIcon, Loader2, StarIcon } from "lucide-react";
+import { GridIcon, Loader2, RowsIcon } from "lucide-react";
 import { SearchBar } from "./search-bar";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { DataTable } from "./file-table";
-import { columns } from "./colums";
+import { columns } from "./columns";
+
+import { Doc } from "../../../../convex/_generated/dataModel";
+import { Label } from "@/components/ui/label";
 
 
 
@@ -65,9 +64,15 @@ export default function FileBrowser({
 
   const isLoading = files === undefined;
 
-return (
+  const modifiedFiles =
+    files?.map((file) => ({
+      ...file,
+      isFavorited: (favorites ?? []).some(
+        (favorite) => favorite.fileId === file._id
+      ),
+    })) ?? [];
 
-    
+return (
     <div>
     {isLoading && (
     <div className="flex flex-col gap-8 items-center mt-24">
@@ -77,35 +82,26 @@ return (
     )}
 
     
-      {!isLoading && (
-        <>
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold">{title}</h1>
-            <SearchBar query={query} setQuery={setQuery} />
+{!isLoading && (
+  <>
+    <div className="flex justify-between items-center mb-8">
+      <h1 className="text-4xl font-bold">{title}</h1>
 
-            <UploadButton />
-          </div>
-
-          <DataTable columns={columns} data={files} />
-
-          {files.length === 0 ? (
-            <Placeholder />
-          ) : (
-            <div className="grid grid-cols-3 gap-4">
-              {files?.map((file) => {
-                return <FileCard favorites={favorites ?? []} key={file._id} file={file} />;
-              })}
-            </div>
-          )}
-        </>
-      )}
+      <SearchBar query={query} setQuery={setQuery} />
+      
+      <UploadButton />
     </div>
-  );
-}
 
+    {files.length === 0 && <Placeholder />}
 
+    <DataTable columns={columns} data={modifiedFiles} />
 
-
-
-
-
+    <div className="grid grid-cols-3 gap-4">
+      {modifiedFiles?.map((file) => {
+        return <FileCard key={file._id} file={file} />;
+      })}
+    </div>
+  </>
+)}
+</div>
+)};
