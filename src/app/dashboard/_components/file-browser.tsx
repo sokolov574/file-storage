@@ -5,11 +5,13 @@ import { api } from "../../../../convex/_generated/api";
 import { UploadButton } from "./upload-button";
 import { FileCard } from "./file-card";
 import Image from "next/image";
-import { GridIcon, Loader2, RowsIcon } from "lucide-react";
+import { GridIcon, Loader2, TableIcon } from "lucide-react";
 import { SearchBar } from "./search-bar";
 import { useState } from "react";
 import { DataTable } from "./file-table";
 import { columns } from "./columns";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { Label } from "@/components/ui/label";
@@ -92,15 +94,32 @@ return (
       <UploadButton />
     </div>
 
+    <Tabs defaultValue="grid">
+      <TabsList>
+        <TabsTrigger value="grid" className="flex gap-2 items-center"> 
+        <GridIcon /> 
+          Grid
+        </TabsTrigger>
+        <TabsTrigger value="table" className="flex gap-2 items-center">
+          <TableIcon />
+           Table
+          </TabsTrigger>
+      </TabsList>
+      <TabsContent value="grid">
+          <div className="grid grid-cols-3 gap-4">
+          {modifiedFiles?.map((file) => {
+            return <FileCard key={file._id} file={file} />;
+          })}
+        </div>
+        </TabsContent>
+      <TabsContent value="table">
+      <DataTable columns={columns} data={modifiedFiles} />
+        </TabsContent>
+    </Tabs>
+
+
     {files.length === 0 && <Placeholder />}
 
-    <DataTable columns={columns} data={modifiedFiles} />
-
-    <div className="grid grid-cols-3 gap-4">
-      {modifiedFiles?.map((file) => {
-        return <FileCard key={file._id} file={file} />;
-      })}
-    </div>
   </>
 )}
 </div>
