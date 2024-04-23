@@ -12,11 +12,13 @@ import { DataTable } from "./file-table";
 import { columns } from "./columns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-
-import { Doc } from "../../../../convex/_generated/dataModel";
-import { Label } from "@/components/ui/label";
-
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 
 function Placeholder() {
@@ -86,6 +88,7 @@ return (
     </div>
 
     <Tabs defaultValue="grid">
+      <div className="flex justify-between items-center">
       <TabsList className="mb-4">
         <TabsTrigger value="grid" className="flex gap-2 items-center"> 
         <GridIcon /> 
@@ -96,6 +99,8 @@ return (
            Table
           </TabsTrigger>
       </TabsList>
+    <div>TESTING</div>
+    </div>
 
       {isLoading && (
           <div className="flex flex-col gap-8 w-full items-center mt-24">
