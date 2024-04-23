@@ -99,7 +99,18 @@ return (
            Table
           </TabsTrigger>
       </TabsList>
-    <div>TESTING</div>
+    <div>
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Theme" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="light">Image</SelectItem>
+          <SelectItem value="dark">CSV</SelectItem>
+          <SelectItem value="system">PDF</SelectItem>
+        </SelectContent>
+      </Select>
+</div>
     </div>
 
       {isLoading && (
