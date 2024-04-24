@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Doc } from "../../../../convex/_generated/dataModel";
 
 
 function Placeholder() {
@@ -50,6 +51,7 @@ export default function FileBrowser({
   const  organization = useOrganization();
   const user = useUser();
   const [query, setQuery] = useState("");
+  const [type, setType] = useState<Doc<"files">["type"] | "all">("all");
 
   let orgId: string | undefined = undefined;
   if (organization?.isLoaded && user?.isLoaded) {
@@ -63,7 +65,13 @@ export default function FileBrowser({
 
   const files = useQuery(
     api.files.getFiles,
-    orgId ? { orgId, query, favorites: favoritesOnly, deletedOnly } : "skip"
+    orgId ? { 
+      orgId,
+      type: type === "all" ? undefined : type,
+      query,  
+      favorites: 
+      favoritesOnly, 
+      deletedOnly } : "skip"
   );
 
   const isLoading = files === undefined;
@@ -100,11 +108,17 @@ return (
           </TabsTrigger>
       </TabsList>
     <div>
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Theme" />
+        <Select
+              value={type}
+              onValueChange={(newType) => {
+                setType(newType as any);
+              }}
+            >
+        <SelectTrigger className="w-[180px]" defaultValue={"all"}>
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="All">All</SelectItem>
           <SelectItem value="light">Image</SelectItem>
           <SelectItem value="dark">CSV</SelectItem>
           <SelectItem value="system">PDF</SelectItem>
