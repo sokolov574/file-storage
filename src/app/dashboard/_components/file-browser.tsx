@@ -114,14 +114,14 @@ return (
                 setType(newType as any);
               }}
             >
-        <SelectTrigger className="w-[180px]" defaultValue={"all"}>
+        <SelectTrigger className="w-[180px]">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="All">All</SelectItem>
-          <SelectItem value="light">Image</SelectItem>
+          <SelectItem value="all">All</SelectItem>
+          <SelectItem value="image">Image</SelectItem>
           <SelectItem value="dark">CSV</SelectItem>
-          <SelectItem value="system">PDF</SelectItem>
+          <SelectItem value="pdf">PDF</SelectItem>
         </SelectContent>
       </Select>
 </div>
