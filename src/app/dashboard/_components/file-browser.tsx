@@ -11,6 +11,7 @@ import { useState } from "react";
 import { DataTable } from "./file-table";
 import { columns } from "./columns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Label } from "@/components/ui/label";
 
 import {
   Select,
@@ -107,14 +108,15 @@ return (
            Table
           </TabsTrigger>
       </TabsList>
-    <div>
+    <div className="flex gap-2 items-center">
+      <Label htmlFor="type-select">Type Filter</Label>
         <Select
               value={type}
               onValueChange={(newType) => {
                 setType(newType as any);
               }}
             >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger id="type-select" className="w-[180px]">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
