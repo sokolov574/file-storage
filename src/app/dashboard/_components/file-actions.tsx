@@ -43,8 +43,8 @@ export function FileCardActions({
     const deleteFile = useMutation(api.files.deleteFile)
     const restoreFile = useMutation(api.files.restoreFile)
     const toggleFavorite = useMutation(api.files.toggleFavorite)
-   
     const { toast } = useToast();
+    const me = useQuery(api.users.getMe);
 
     const [isConfirmOpen, serIsConfirmOpen] = useState(false);
  return (
@@ -111,10 +111,11 @@ export function FileCardActions({
               )} 
         </DropdownMenuItem>
 
-        <Protect
-        role="org:admin"
-        fallback={<></>}
-        > 
+        <Protect condition={(check) => {
+          return check({
+            role: "org:admin",
+          }) || file.userId === me?._id
+        }} fallback={<></>}> 
 
         <DropdownMenuItem 
           onClick={() => {
