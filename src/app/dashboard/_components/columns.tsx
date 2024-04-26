@@ -24,7 +24,18 @@ function UserCell({ userId }: { userId: Id<"users"> }) {
 }
 
 export const columns: ColumnDef<
-  Doc<"files"> & { url: string; isFavorited: boolean }
+  {
+    isFavorited: boolean;
+    _id: Id<"files">;
+    _creationTime: number;
+    shouldDelete?: boolean | undefined;
+    name: string;
+    type: "image" | "csv" | "pdf";
+    orgId: string;
+    fileId: Id<"_storage">;
+    userId: Id<"users">;
+  },
+  unknown
 >[] = [
   {
     accessorKey: "name",
@@ -51,16 +62,14 @@ export const columns: ColumnDef<
     },
   },
   {
-    header: "Actions",
-    cell: ({ row }) => {
-      return (
-        <div>
-          <FileCardActions
-            file={row.original}
-            isFavorited={row.original.isFavorited}
-          />
-        </div>
-      );
-    },
+  header: "Actions",
+  cell: ({ row }) => {
+    return (
+      <div>
+        <FileCardActions file={row.original} isFavorited={row.original.isFavorited} />
+      </div>
+    );
   },
+  accessorFn: () => undefined,
+},
 ];

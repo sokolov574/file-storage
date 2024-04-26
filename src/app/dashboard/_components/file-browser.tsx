@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Doc } from "../../../../convex/_generated/dataModel";
+import { Doc, Id } from "../../../../convex/_generated/dataModel";
 
 
 function Placeholder() {
@@ -38,6 +38,7 @@ function Placeholder() {
     </div>
   );
 }
+
 
 export default function FileBrowser({ 
   title, 
