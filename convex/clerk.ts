@@ -1,6 +1,6 @@
 "use node";
 
-import type { WebhookEvent } from "@clerk/clerk-sdk-node";
+import type { WebhookEvent } from "@clerk/backend";
 import { v } from "convex/values";
 import { Webhook } from "svix";
 
@@ -12,7 +12,7 @@ export const fulfill = internalAction({
   args: { headers: v.any(), payload: v.string() },
   handler: async (ctx, args) => {
     const wh = new Webhook(webhookSecret);
-    const payload = wh.verify(args.payload, args.headers) as WebhookEvent;
+    const payload = wh.verify(args.payload, args.headers) as unknown as WebhookEvent;
     return payload;
   },
 });
